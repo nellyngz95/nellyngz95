@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Nelly Garcia-Sihuay</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #1e1e2e;
+  --surface: #252538;
+  --surface2: #2d2d45;
+  --purple: #c084fc;
+  --purple-soft: #a855f7;
+  --aqua: #67e8f9;
+  --aqua-soft: #22d3ee;
+  --pink: #f0abfc;
+  --text: #e8e8f0;
+  --muted: #9494b0;
+  --border: #3a3a55;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 3rem;
+  background: rgba(30,30,46,0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Caveat', cursive;
+  font-size: 1.6rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--purple), var(--aqua));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--muted); text-decoration: none;
+  font-size: 0.88rem; letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--aqua); }
+.nav-links a.active { color: var(--purple); }
+
+/* HERO */
+.portfolio-hero {
+  padding: 8rem 3rem 4rem;
+  max-width: 1100px; margin: 0 auto;
+  position: relative;
+}
+.blob {
+  position: fixed; border-radius: 50%;
+  filter: blur(80px); pointer-events: none; opacity: 0.1;
+  z-index: 0;
+}
+.blob-1 { width: 400px; height: 400px; background: var(--purple); top: 0; right: 0; }
+.blob-2 { width: 300px; height: 300px; background: var(--aqua); bottom: 100px; left: -50px; }
+
+.hero-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem; color: var(--aqua);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-tag::before { content:''; display:block; width:2rem; height:1px; background:var(--aqua); }
+.portfolio-title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 700; line-height: 1.05;
+  margin-bottom: 1rem;
+}
+.portfolio-title span {
+  background: linear-gradient(135deg, var(--purple), var(--pink));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.portfolio-sub {
+  color: var(--muted); font-size: 1.05rem;
+  line-height: 1.75; max-width: 580px;
+  margin-bottom: 2rem;
+}
+.portfolio-sub em { color: var(--purple); font-style: normal; font-weight: 500; }
+
+/* FILTER TABS */
+.filter-bar {
+  display: flex; gap: 0.75rem; flex-wrap: wrap;
+  margin-bottom: 3rem;
+  max-width: 1100px; margin-left: auto; margin-right: auto;
+  padding: 0 3rem;
+}
+.filter-btn {
+  padding: 0.5rem 1.25rem; border-radius: 999px;
+  font-size: 0.82rem; cursor: pointer;
+  border: 1px solid var(--border);
+  background: transparent; color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
+}
+.filter-btn:hover { border-color: var(--purple); color: var(--purple); }
+.filter-btn.active {
+  background: rgba(192,132,252,0.15);
+  border-color: rgba(192,132,252,0.5);
+  color: var(--purple);
+}
+
+/* SECTIONS */
+.portfolio-section {
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 3rem 5rem;
+}
+.section-header {
+  display: flex; align-items: baseline; gap: 1rem;
+  margin-bottom: 2rem; border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+}
+.section-hand {
+  font-family: 'Caveat', cursive;
+  font-size: 2rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--purple), var(--aqua));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.section-code {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem; color: var(--muted);
+  letter-spacing: 0.1em;
+}
+.section-desc {
+  color: var(--muted); font-size: 0.95rem;
+  line-height: 1.75; margin-bottom: 2rem;
+  max-width: 650px;
+}
+
+/* VIDEO GRID */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; margin-bottom: 2rem;
+}
+.video-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  transition: all 0.25s;
+}
+.video-card:hover { transform: translateY(-4px); border-color: var(--purple); }
+.video-thumb {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.video-thumb iframe { width: 100%; height: 100%; border: none; }
+.video-placeholder {
+  width: 100%; height: 100%;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 0.5rem; color: var(--muted);
+}
+.play-icon {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(192,132,252,0.2);
+  border: 2px solid var(--purple);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem;
+}
+.video-info { padding: 1.25rem; }
+.video-title { font-weight: 500; font-size: 0.95rem; margin-bottom: 0.4rem; }
+.video-meta { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+.video-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.75rem; }
+.vtag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem; padding: 0.2rem 0.55rem;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 4px; color: var(--muted);
+}
+.vtag.purple { background: rgba(192,132,252,0.1); border-color: rgba(192,132,252,0.3); color: var(--purple); }
+.vtag.aqua { background: rgba(103,232,249,0.1); border-color: rgba(103,232,249,0.3); color: var(--aqua); }
+
+/* CREDITS TABLE */
+.credits-grid {
+  display: flex; flex-direction: column; gap: 1rem;
+}
+.credit-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.5rem; align-items: center;
+  transition: all 0.2s;
+}
+.credit-item:hover { border-color: var(--aqua); transform: translateX(4px); }
+.credit-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  background: var(--purple); flex-shrink: 0;
+}
+.credit-dot.aqua { background: var(--aqua); }
+.credit-dot.pink { background: var(--pink); }
+.credit-title { font-weight: 500; font-size: 0.93rem; margin-bottom: 0.2rem; }
+.credit-detail { font-size: 0.82rem; color: var(--muted); }
+.credit-role {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem; color: var(--purple);
+  text-align: right; white-space: nowrap;
+  letter-spacing: 0.05em;
+}
+
+/* GAME CARDS */
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+.game-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px; overflow: hidden;
+  transition: all 0.25s; text-decoration: none; color: inherit;
+  display: block;
+}
+.game-card:hover { transform: translateY(-4px); border-color: var(--aqua); }
+.game-banner {
+  width: 100%; aspect-ratio: 16/9;
+  background: var(--surface2);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Caveat', cursive; font-size: 1.1rem;
+  color: var(--muted); border-bottom: 1px solid var(--border);
+  position: relative;
+}
+.game-banner-label {
+  position: absolute; top: 0.75rem; right: 0.75rem;
+  font-family: 'Space Mono', monospace; font-size: 0.62rem;
+  padding: 0.2rem 0.6rem; border-radius: 4px;
+  background: rgba(103,232,249,0.15);
+  border: 1px solid rgba(103,232,249,0.35);
+  color: var(--aqua); letter-spacing: 0.08em;
+}
+.game-info { padding: 1.25rem; }
+.game-title { font-weight: 500; font-size: 0.95rem; margin-bottom: 0.5rem; }
+.game-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.6; margin-bottom: 0.75rem; }
+.game-role {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem; color: var(--purple);
+  letter-spacing: 0.05em;
+}
+
+/* BACK LINK */
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--muted); text-decoration: none; font-size: 0.88rem;
+  margin-bottom: 2rem; transition: color 0.2s;
+}
+.back-link:hover { color: var(--aqua); }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  color: var(--muted); font-size: 0.82rem;
+  max-width: 100%;
+}
+.footer-hand { font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--purple); }
+
+@media(max-width:768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .portfolio-hero { padding: 6rem 1.5rem 2rem; }
+  .filter-bar { padding: 0 1.5rem; }
+  .portfolio-section { padding: 0 1.5rem 3rem; }
+  .credit-item { grid-template-columns: auto 1fr; }
+  .credit-role { display: none; }
+  footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<nav>
+  <a href="index.html" class="nav-logo">ng ◎</a>
+  <ul class="nav-links">
+    <li><a href="index.html">home</a></li>
+    <li><a href="index.html#about">about</a></li>
+    <li><a href="index.html#research">research</a></li>
+    <li><a href="portfolio.html" class="active">portfolio</a></li>
+    <li><a href="index.html#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="portfolio-hero" style="position:relative;z-index:1;">
+  <a href="index.html" class="back-link">← back to home</a>
+  <div class="hero-tag">creative work</div>
+  <h1 class="portfolio-title">
+    sound <span>portfolio</span>
+  </h1>
+  <p class="portfolio-sub">
+    I want to transport people to new worlds — share a story and make them <em>feel</em> something. From film to games to immersive experiences, sound is how I build those worlds.
+  </p>
+</div>
+
+<!-- FILTER -->
+<div class="filter-bar">
+  <button class="filter-btn active" onclick="filterSection('all', this)">all work</button>
+  <button class="filter-btn" onclick="filterSection('film', this)">film & tv</button>
+  <button class="filter-btn" onclick="filterSection('games', this)">games</button>
+  <button class="filter-btn" onclick="filterSection('field', this)">field recording</button>
+</div>
+
+<!-- ===== FILM & SOUND DESIGN ===== -->
+<div class="portfolio-section" data-category="film" id="film">
+  <div class="section-header">
+    <span class="section-hand">film & sound design</span>
+    <span class="section-code">// mixing + design credits</span>
+  </div>
+  <p class="section-desc">
+    My portfolio spans live action to animation — from intimate stereo mixes to full Atmos productions. I believe every sound choice is a narrative choice.
+  </p>
+
+  <!-- VIDEO DEMOS -->
+  <div class="video-grid">
+    <div class="video-card">
+      <div class="video-thumb">
+        <!-- REPLACE: paste your YouTube embed URL below -->
+        <!-- <iframe src="https://www.youtube.com/embed/YOUR_ID" allowfullscreen></iframe> -->
+        <div class="video-placeholder">
+          <div class="play-icon">▶</div>
+          <span style="font-size:0.8rem;">add your demo reel here</span>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Demo Reel — Sound Design</div>
+        <div class="video-meta">[ replace with your reel description ]</div>
+        <div class="video-tags">
+          <span class="vtag purple">Sound Design</span>
+          <span class="vtag aqua">Stereo · 5.1 · Atmos</span>
+        </div>
+      </div>
+    </div>
+    <div class="video-card">
+      <div class="video-thumb">
+        <!-- REPLACE: paste your YouTube embed URL for Mismo Cielo -->
+        <!-- <iframe src="https://www.youtube.com/embed/YOUR_ID" allowfullscreen></iframe> -->
+        <div class="video-placeholder">
+          <div class="play-icon">▶</div>
+          <span style="font-size:0.8rem;">Mismo Cielo — add video</span>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">Mismo Cielo</div>
+        <div class="video-meta">
+          Short film · Director: [ add director name ]<br>
+          Screening: [ add screening info ]
+        </div>
+        <div class="video-tags">
+          <span class="vtag purple">Direct Sound</span>
+          <span class="vtag">Field Recording</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREDITS -->
+  <div class="credits-grid">
+    <div class="credit-item">
+      <div class="credit-dot"></div>
+      <div>
+        <div class="credit-title">Women in Higher Education Network (WHEN)</div>
+        <div class="credit-detail">[ add year · add format · add brief description ]</div>
+      </div>
+      <div class="credit-role">Mixer · Stereo / 5.1 / Atmos</div>
+    </div>
+    <div class="credit-item">
+      <div class="credit-dot pink"></div>
+      <div>
+        <div class="credit-title">Mismo Cielo</div>
+        <div class="credit-detail">Short film · Director: [ add name ] · [ add year ]</div>
+      </div>
+      <div class="credit-role">Direct Sound</div>
+    </div>
+    <!-- ADD MORE CREDITS HERE — copy the credit-item div above -->
+  </div>
+</div>
+
+<!-- ===== GAMES ===== -->
+<div class="portfolio-section" data-category="games" id="games"
+     style="border-top: 1px solid var(--border);">
+  <div class="section-header">
+    <span class="section-hand">games</span>
+    <span class="section-code">// game_audio/</span>
+  </div>
+  <p class="section-desc">
+    With the rise of AI in the audio world, I've been experimenting to see if synthetic sounds could be perceived as real. During my time as a research assistant I created demos exploring procedural and AI-generated audio in game contexts.
+  </p>
+  <div class="games-grid">
+    <div class="game-card">
+      <div class="game-banner">
+        <span>🐦 pepe pidgerton</span>
+        <span class="game-banner-label">UNITY</span>
+      </div>
+      <div class="game-info">
+        <div class="game-title">Pepe Pidgerton</div>
+        <div class="game-desc">A classy-latino pigeon trying to get through his day. [ add more description — what did you do for audio? what was the context? ]</div>
+        <div class="game-role">// game audio · sound design · [ add engine ]</div>
+      </div>
+    </div>
+    <!-- ADD MORE GAME CARDS HERE — copy the game-card div above -->
+    <div class="game-card">
+      <div class="game-banner">
+        <span style="color:var(--muted);font-family:'Space Mono',monospace;font-size:0.8rem;">+ add your next game</span>
+        <span class="game-banner-label">UNITY</span>
+      </div>
+      <div class="game-info">
+        <div class="game-title">[ Game Title ]</div>
+        <div class="game-desc">[ Add description of the game and your audio contribution ]</div>
+        <div class="game-role">// [ your role ]</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FIELD RECORDING ===== -->
+<div class="portfolio-section" data-category="field" id="field"
+     style="border-top: 1px solid var(--border);">
+  <div class="section-header">
+    <span class="section-hand">field recording</span>
+    <span class="section-code">// direct_sound/</span>
+  </div>
+  <p class="section-desc">
+    [ Add a short note about your approach to field recording and direct sound — what draws you to it, what kinds of environments you've recorded in ]
+  </p>
+  <div class="video-grid">
+    <div class="video-card">
+      <div class="video-thumb">
+        <!-- REPLACE with your field recording demo -->
+        <div class="video-placeholder">
+          <div class="play-icon">▶</div>
+          <span style="font-size:0.8rem;">add field recording demo</span>
+        </div>
+      </div>
+      <div class="video-info">
+        <div class="video-title">[ Recording Title ]</div>
+        <div class="video-meta">[ Location · Year · Equipment ]</div>
+        <div class="video-tags">
+          <span class="vtag aqua">Field Recording</span>
+          <span class="vtag">[ add format ]</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span class="footer-hand">made with love ✦ nelly garcia-sihuay</span>
+  <span>London · QMUL · 2026</span>
+</footer>
+
+<script>
+function filterSection(cat, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.portfolio-section').forEach(s => {
+    if (cat === 'all' || s.dataset.category === cat) {
+      s.style.display = 'block';
+    } else {
+      s.style.display = 'none';
+    }
+  });
+}
+</script>
+
+</body>
+</html>
