@@ -163,12 +163,51 @@ nav {
   margin-bottom: 0.75rem;
   background: var(--surface);
   border-left: 3px solid var(--purple);
-  transition: border-color 0.2s;
+  transition: all 0.2s;
 }
 .edu-item:hover { border-color: var(--aqua); border-left-color: var(--aqua); }
 .edu-degree { font-weight: 500; font-size: 0.92rem; margin-bottom: 0.2rem; }
 .edu-inst { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.1rem; }
 .edu-date { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--aqua); }
+
+/* PHOTO GALLERY */
+.gallery-section {
+  grid-column: 1 / -1;
+}
+.gallery-label {
+  display: flex; align-items: baseline; gap: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.gallery-grid img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  transition: transform 0.3s, filter 0.3s;
+  filter: brightness(0.85);
+}
+.gallery-grid img:hover {
+  transform: scale(1.03);
+  filter: brightness(1);
+}
+.gallery-caption {
+  margin-top: 1rem;
+  text-align: center;
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+.gallery-caption span { color: var(--purple); }
 
 footer {
   border-top: 1px solid var(--border);
@@ -184,6 +223,9 @@ footer {
   .page-hero { padding: 6rem 1.5rem 2rem; }
   .cv-wrap { grid-template-columns: 1fr; padding: 0 1.5rem 3rem; gap: 2rem; }
   .cv-col-full { grid-column: 1; }
+  .gallery-section { grid-column: 1; }
+  .gallery-grid { grid-template-columns: 1fr; }
+  .gallery-grid img { height: 200px; }
   footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; text-align: center; }
 }
 </style>
@@ -214,130 +256,104 @@ footer {
       <span class="section-hand">experience</span>
       <span class="section-code">// work/</span>
     </div>
+
     <div class="xp-item">
       <div class="xp-dot"></div>
       <div>
-        <div class="xp-date">January 2025 – Present </div>
-        <div class="xp-role">R&D Engineer</div>
-        <div class="xp-org">Nemisindo · London, UK</div>
-        <div class="xp-desc">Develop VST's for procedural audio models. Performance of quality tests, documentation and creation of video demos.</div>
-      </div>
-    </div>
-    </div>
-    <div class="xp-item">
-      <div class="xp-dot"></div>
-      <div>
-        <div class="xp-date">April 2025 – November 2025</div>
+        <div class="xp-date">April 2025 – Present</div>
         <div class="xp-role">Research Assistant</div>
         <div class="xp-org">Nemisindo · London, UK</div>
-        <div class="xp-desc">Developing procedural audio evaluation frameworks for game audio and immersive media. Optimization of procedurla audio models through machine learning algorithms.</div>
+        <div class="xp-desc">Developed and optimised VST plugin GUIs in JUCE, applying machine learning methods to identify and improve perceptual quality parameters in procedural audio models. Produced technical demos including programmed mini-games and video content.</div>
       </div>
     </div>
+
     <div class="xp-item">
       <div class="xp-dot aqua"></div>
       <div>
-        <div class="xp-date">2023 – PRESENT</div>
-        <div class="xp-role">Teaching Assistant</div>
+        <div class="xp-date">2023 – Present</div>
+        <div class="xp-role">Teaching Assistant — Award-Winning</div>
         <div class="xp-org">Queen Mary University of London</div>
-        <div class="xp-desc"> Demonstrating across four modules: 
-        <strong>Audio Plugin Development</strong> (VST creation in JUCE/C++), 
-        <strong>Digital Circuits</strong> (logic gates, XOR, OR, boolean algebra), 
-        <strong>Sound Design</strong> (creative and technical audio production), 
-        and <strong>Design Research Methods</strong> (user evaluation and study design). 
-      Awarded Demonstrator of the Year 2024.
+        <div class="xp-desc">Taught real-time DSP, audio programming in JUCE and JavaScript, and sound design — with open-access course materials on GitHub. Delivered hands-on instruction in digital and electronic circuits. Mentored students through final projects across multiple modules. Awarded Demonstrator of the Year 2024.</div>
+      </div>
     </div>
-    </div>
+
     <div class="xp-item">
       <div class="xp-dot aqua"></div>
       <div>
-        <div class="xp-date">2022 – 2024</div>
-        <div class="xp-role">Contractor-R&D Engineer</div>
+        <div class="xp-date">November 2022 – February 2024</div>
+        <div class="xp-role">Contractor — R&D Engineer</div>
         <div class="xp-org">Nemisindo · London, UK</div>
-        <div class="xp-desc">Developed audio plugins including Stutter FX — implementing filters, delay, reverb, and loudness calibration.</div>
+        <div class="xp-desc">Designed and built VST plugins for external projects in JUCE, implementing filters, delays and other DSP components.</div>
       </div>
     </div>
+
     <div class="xp-item">
       <div class="xp-dot"></div>
       <div>
-        <div class="xp-date">JULY 2022-OCTOBER 2022</div>
+        <div class="xp-date">July 2022 – October 2022</div>
         <div class="xp-role">Consulting Engineer</div>
         <div class="xp-org">Thousand Eyes (Cisco) · Mexico City</div>
-        <div class="xp-desc">Technical expert responsible for ensuring customer success through advanced troubleshooting, deployment, and strategic adoption of internet and cloud intelligence monitoring solutions</div>
+        <div class="xp-desc">Provided advanced technical support, troubleshooting, and strategic guidance for ThousandEyes's network intelligence platforms.</div>
       </div>
     </div>
   </div>
-<div class="xp-item">
-  <div class="xp-dot aqua"></div>
-  <div>
-    <div class="xp-date">JUL 2019 – JAN 2020</div>
-    <div class="xp-role">Audio Trainee</div>
-    <div class="xp-org">LomasPost · Mexico City</div>
-    <div class="xp-desc">Assisted post-production engineers in sound design creation and session recording for marketing promos.</div>
-  </div>
-</div>
-<div class="xp-item">
-  <div class="xp-dot"></div>
-  <div>
-    <div class="xp-date">AUG 2018 – JUL 2019</div>
-    <div class="xp-role">Recording Studio Assistant</div>
-    <div class="xp-org">Fonobox · Mexico City</div>
-    <div class="xp-desc">Assisted in recording musical sessions in a professional studio environment.</div>
-  </div>
-</div>
+
   <!-- EDUCATION + SKILLS -->
   <div>
     <div class="section-label">
       <span class="section-hand">education</span>
       <span class="section-code">// study/</span>
     </div>
+
     <div class="edu-item">
       <div class="edu-degree">PhD — Music and Audio Technology</div>
       <div class="edu-inst">Queen Mary University of London</div>
-      <div class="edu-date">2022 – PRESENT</div>
+      <div class="edu-date">2022 – Present</div>
     </div>
+
     <div class="edu-item">
-      <div class="edu-degree">BSc — Engineering in communications and electronics</div>
+      <div class="edu-degree">BEng — Communications & Electronics</div>
       <div class="edu-inst">Instituto Politécnico Nacional</div>
-      <div class="edu-date">2015-2019</div>
+      <div class="edu-date">2015 – 2019</div>
     </div>
 
     <div style="margin-top:2.5rem;">
-    <div class="section-label">
-      <span class="section-hand">skills</span>
-      <span class="section-code">// tools/</span>
-    </div>
-    <div class="skills-block">
-      <div class="skills-cat">sound & audio ♪</div>
-      <div class="chips">
-        <span class="chip">Sound Design</span>
-        <span class="chip">Pro Tools</span>
-        <span class="chip">Reaper</span>
-        <span class="chip">Ableton</span>
-        <span class="chip"> Mixing</span>
-        <span class="chip">Procedural Audio</span>
+      <div class="section-label">
+        <span class="section-hand">skills</span>
+        <span class="section-code">// tools/</span>
       </div>
-    </div>
-    <div class="skills-block">
-      <div class="skills-cat">code & tech ⚙</div>
-      <div class="chips">
-        <span class="chip tech">Python</span>
-        <span class="chip tech">C++</span>
-        <span class="chip tech">JUCE</span>
-        <span class="chip tech">Unity</span>
-        <span class="chip tech">Unreal</span>
-        <span class="chip tech">Machine Learning</span>
-        <span class="chip tech">Signal Processing</span>
+      <div class="skills-block">
+        <div class="skills-cat">sound & audio ♪</div>
+        <div class="chips">
+          <span class="chip">Sound Design</span>
+          <span class="chip">Pro Tools</span>
+          <span class="chip">Reaper</span>
+          <span class="chip">Ableton</span>
+          <span class="chip">Mixing</span>
+          <span class="chip">Procedural Audio</span>
+        </div>
       </div>
-    </div>
-    <div class="skills-block">
-      <div class="skills-cat">research ✦</div>
-      <div class="chips">
-        <span class="chip">Mixed Methods</span>
-        <span class="chip">Thematic Analysis</span>
-        <span class="chip">Survey Design</span>
-        <span class="chip">Perceptual Evaluation</span>
+      <div class="skills-block">
+        <div class="skills-cat">code & tech ⚙</div>
+        <div class="chips">
+          <span class="chip tech">Python</span>
+          <span class="chip tech">C++</span>
+          <span class="chip tech">JUCE</span>
+          <span class="chip tech">Unity</span>
+          <span class="chip tech">Unreal</span>
+          <span class="chip tech">Machine Learning</span>
+          <span class="chip tech">Signal Processing</span>
+        </div>
       </div>
-    </div>
+      <div class="skills-block">
+        <div class="skills-cat">research ✦</div>
+        <div class="chips">
+          <span class="chip">Mixed Methods</span>
+          <span class="chip">Thematic Analysis</span>
+          <span class="chip">Survey Design</span>
+          <span class="chip">Perceptual Evaluation</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -383,43 +399,50 @@ footer {
       <div class="pub-year">2024</div>
     </div>
   </div>
-  <!-- WORKSHOPS & TUTORIALS — full width -->
-<div class="cv-col-full">
-  <div class="section-label">
-    <span class="section-hand">workshops & tutorials</span>
-    <span class="section-code">// talks/</span>
+
+  <!-- PHOTO GALLERY — full width, between publications and workshops -->
+  <div class="cv-col-full">
+  <div style="border-radius: 16px; overflow: hidden; margin-bottom: 1rem;">
+    <img src="cvImages.png" alt="Conferences and workshops" 
+         style="width: 100%; height: 320px; object-fit: cover; object-position: center; display: block; filter: brightness(0.9);">
   </div>
-  <div class="pub-item">
-    <div>
-      <div class="pub-title">Procedural Audio for Video Games <span class="badge b-conf">TUTORIAL</span></div>
-      <div class="pub-venue">CMMR 2025 · 2.5-hour tutorial · Pool Street Cinema · Friday 7 Nov, 14:00–16:30 · with Joshua Reiss</div>
-    </div>
-    <div class="pub-year">2025</div>
-  </div>
-  <div class="pub-item">
-    <div>
-      <div class="pub-title">AI Tools for Sound Design: Emotional Music and Sound Effects in Visual Media <span class="badge b-conf">WORKSHOP</span></div>
-      <div class="pub-venue">AES New York Show 2024 · Session 1E03 · Monday 7 October, 10:30–12:00 EDT</div>
-    </div>
-    <div class="pub-year">2024</div>
-  </div>
+  <p style="text-align: center; font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--muted);">
+    presenting research · teaching · <span style="color: var(--purple);">building community ✦</span>
+  </p>
 </div>
-  <div class="pub-item">
-    <div>
-      <div class="pub-title">Querying by Vocal Imitation Challenge (QVIM) 
-      <span class="badge b-conf">CHALLENGE</span></div>
-      <div class="pub-venue">AES AIMLA 2025 · Organised by Pro Sound Effects, 
-      Queen Mary University of London &amp; JKU · 
-      <a href="https://qvim-aes.github.io" target="_blank" 
-         style="color:var(--aqua);text-decoration:none;">
-        qvim-aes.github.io ↗
-      </a></div>
+
+  <!-- WORKSHOPS & TUTORIALS — full width -->
+  <div class="cv-col-full">
+    <div class="section-label">
+      <span class="section-hand">workshops & tutorials</span>
+      <span class="section-code">// talks/</span>
     </div>
-    <div class="pub-year">2025</div>
+    <div class="pub-item">
+      <div>
+        <div class="pub-title">Procedural Audio for Video Games <span class="badge b-conf">TUTORIAL</span></div>
+        <div class="pub-venue">CMMR 2025 · 2.5-hour tutorial · Pool Street Cinema · Friday 7 Nov, 14:00–16:30 · with Joshua Reiss</div>
+      </div>
+      <div class="pub-year">2025</div>
+    </div>
+    <div class="pub-item">
+      <div>
+        <div class="pub-title">AI Tools for Sound Design: Emotional Music and Sound Effects in Visual Media <span class="badge b-conf">WORKSHOP</span></div>
+        <div class="pub-venue">AES New York Show 2024 · Session 1E03 · Monday 7 October, 10:30–12:00 EDT</div>
+      </div>
+      <div class="pub-year">2024</div>
+    </div>
+    <div class="pub-item">
+      <div>
+        <div class="pub-title">Querying by Vocal Imitation Challenge (QVIM) <span class="badge b-conf">CHALLENGE</span></div>
+        <div class="pub-venue">AES AIMLA 2025 · Organised by Pro Sound Effects, Queen Mary University of London &amp; JKU · 
+          <a href="https://qvim-aes.github.io" target="_blank" style="color:var(--aqua);text-decoration:none;">qvim-aes.github.io ↗</a>
+        </div>
+      </div>
+      <div class="pub-year">2025</div>
+    </div>
   </div>
 
 </div>
-  
 
 <footer>
   <span class="footer-hand">made with love ✦ nelly garcia-sihuay</span>
