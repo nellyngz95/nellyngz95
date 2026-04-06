@@ -164,7 +164,27 @@ nav {
   font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em;
 }
 
+
 /* ABOUT */
+.about-inner {
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+.about-image {
+  flex-shrink: 0;
+  width: 380px;
+  height: 500px;
+  overflow: hidden;
+  border-radius: 16px;
+}
+.about-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.about-text { flex: 1; }
 .about-p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
 .about-p strong { color: var(--text); font-weight: 500; }
 .about-cta { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; }
@@ -248,6 +268,8 @@ footer {
   .section-wrap { padding: 3rem 1.5rem; }
   .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
   footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; text-align: center; }
+  .about-inner { flex-direction: column; }
+.about-image { width: 100%; max-width: 380px; margin: 0 auto; }
 }
 
 .hero-right {
@@ -458,13 +480,22 @@ footer {
     <span class="section-hand">about me</span>
     <span class="section-code">// who_is_nelly.md</span>
   </div>
-  <p class="about-p">I'm a PhD researcher and audio engineer who thinks the most interesting things happen when we share with others. <strong>I'd like to think of myself as the bridge between creative and technical skills</strong>, where a sound designer's intuition meets an technology.</p>
-  <p class="about-p">My research asks: how can AI tools <strong>augment</strong> sound designers rather than replace them? I build tools, run studies, analyse data, and talk to practitioners all over the world to find out.</p>
-  <p class="about-p">Currently at the <strong>Centre for Digital Music, QMUL</strong>. I also work at <strong>Nemisindo</strong> developing procedural audio engines, and teach signal processing as a Demonstrator. When I'm not researching, I'm recording soundscapes, mixing films, and designing audio for games.</p>
-  <div class="about-cta">
-    <a href="portfolio.html" class="btn btn-purple">hear my work →</a>
-    <a href="cv.html" class="btn btn-ghost">full cv</a>
+  
+  <div class="about-inner">
+    <div class="about-image">
+      <img src="WhoAmI.png" alt="Nelly Garcia" />
+    </div>
+    <div class="about-text">
+      <p class="about-p">I'm a PhD researcher and audio engineer who thinks the most interesting things happen when we share with others. <strong>I'd like to think of myself as the bridge between creative and technical skills</strong>, where a sound designer's intuition meets technology.</p>
+      <p class="about-p">My research asks: how can AI tools <strong>augment</strong> sound designers rather than replace them? I build tools, run studies, analyse data, and talk to practitioners all over the world to find out.</p>
+      <p class="about-p">Currently at the <strong>Centre for Digital Music, QMUL</strong>. I also work at <strong>Nemisindo</strong> developing procedural audio engines, and teach signal processing as a Demonstrator. When I'm not researching, I'm recording soundscapes, mixing films, and designing audio for games.</p>
+      <div class="about-cta">
+        <a href="portfolio.html" class="btn btn-purple">hear my work →</a>
+        <a href="cv.html" class="btn btn-ghost">full cv</a>
+      </div>
+    </div>
   </div>
+
 </div>
 </div>
 
