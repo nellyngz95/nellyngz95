@@ -170,6 +170,24 @@ nav {
 .edu-inst { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.1rem; }
 .edu-date { font-family: 'Space Mono', monospace; font-size: 0.68rem; color: var(--aqua); }
 
+  /* CERTIFICATE */
+.cert-row {
+  padding: 1.25rem 1.5rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  transition: border-color 0.2s; margin-top: 1rem;
+}
+.cert-row:hover { border-color: var(--purple); }
+.cert-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.6rem 1.25rem; border-radius: 999px;
+  background: rgba(192,132,252,0.15); border: 1px solid rgba(192,132,252,0.4);
+  color: var(--purple); font-size: 0.82rem; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+}
+.cert-btn:hover { background: rgba(192,132,252,0.25); }
+
 /* PHOTO GALLERY */
 .gallery-section {
   grid-column: 1 / -1;
@@ -231,7 +249,14 @@ footer {
 </style>
 </head>
 <body>
-
+<!-- Certificate Modal -->
+<div id="cert-modal" style="display:none; position:fixed; inset:0; z-index:1000; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); align-items:center; justify-content:center;">
+  <div style="position:relative; max-width:500px; width:90%; margin:auto;">
+    <button onclick="document.getElementById('cert-modal').style.display='none'"
+            style="position:absolute; top:-40px; right:0; background:none; border:none; color:white; font-size:1rem; cursor:pointer; font-family:'Space Mono',monospace;">✕ close</button>
+    <img src="CertCrew.png" alt="Crew Gal Certificate" style="width:100%; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+  </div>
+</div>
 <nav>
   <a href="index.html" class="nav-logo">ng ◎</a>
   <ul class="nav-links">
