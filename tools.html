@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tools & Plugins — Nelly Garcia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #1e1e2e;
+  --surface: #252538;
+  --surface2: #2d2d45;
+  --purple: #c084fc;
+  --purple-soft: #a855f7;
+  --aqua: #67e8f9;
+  --pink: #f0abfc;
+  --text: #e8e8f0;
+  --muted: #9494b0;
+  --border: #3a3a55;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem 3rem;
+  background: rgba(30,30,46,0.9);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Caveat', cursive; font-size: 1.6rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--purple), var(--aqua));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--muted); text-decoration: none;
+  font-size: 0.88rem; letter-spacing: 0.05em; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--aqua); }
+.nav-links a.active { color: var(--purple); }
+
+/* HERO */
+.page-hero {
+  padding: 8rem 3rem 4rem;
+  max-width: 1100px; margin: 0 auto;
+  position: relative;
+}
+.blob {
+  position: fixed; border-radius: 50%;
+  filter: blur(80px); pointer-events: none; opacity: 0.1; z-index: 0;
+}
+.blob-1 { width: 400px; height: 400px; background: var(--aqua); top: 0; right: 0; }
+.blob-2 { width: 300px; height: 300px; background: var(--purple); bottom: 100px; left: -50px; }
+
+.back-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  color: var(--muted); text-decoration: none; font-size: 0.88rem;
+  margin-bottom: 2rem; transition: color 0.2s;
+}
+.back-link:hover { color: var(--aqua); }
+
+.hero-tag {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem; color: var(--aqua);
+  letter-spacing: 0.15em; text-transform: uppercase;
+  margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 0.75rem;
+}
+.hero-tag::before { content:''; display:block; width:2rem; height:1px; background:var(--aqua); }
+
+.page-title {
+  font-family: 'Caveat', cursive;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 700; line-height: 1.05; margin-bottom: 1rem;
+}
+.page-title span {
+  background: linear-gradient(135deg, var(--aqua), var(--purple));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.page-sub {
+  color: var(--muted); font-size: 1.05rem;
+  line-height: 1.75; max-width: 580px; margin-bottom: 2rem;
+}
+.page-sub em { color: var(--aqua); font-style: normal; font-weight: 500; }
+
+/* SECTIONS */
+.tools-section {
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 3rem 5rem; position: relative; z-index: 1;
+}
+.section-header {
+  display: flex; align-items: baseline; gap: 1rem;
+  margin-bottom: 2rem; border-bottom: 1px solid var(--border);
+  padding-bottom: 1rem;
+}
+.section-hand {
+  font-family: 'Caveat', cursive; font-size: 2rem; font-weight: 700;
+  background: linear-gradient(135deg, var(--purple), var(--aqua));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.section-code {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem; color: var(--muted); letter-spacing: 0.1em;
+}
+.section-desc {
+  color: var(--muted); font-size: 0.95rem;
+  line-height: 1.75; margin-bottom: 2rem; max-width: 650px;
+}
+
+/* TOOL CARDS */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem; margin-bottom: 2rem;
+}
+.tool-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.75rem;
+  transition: all 0.25s; position: relative; overflow: hidden;
+}
+.tool-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.3s;
+}
+.tool-card:hover::before { transform: scaleX(1); }
+.tool-card:hover { transform: translateY(-3px); border-color: var(--purple); }
+.tool-card.purple::before { background: linear-gradient(90deg, var(--purple), var(--aqua)); }
+.tool-card.aqua::before { background: linear-gradient(90deg, var(--aqua), var(--pink)); }
+.tool-card.pink::before { background: linear-gradient(90deg, var(--pink), var(--purple)); }
+
+.tool-lang {
+  font-family: 'Space Mono', monospace; font-size: 0.68rem;
+  color: var(--aqua); margin-bottom: 0.75rem; letter-spacing: 0.1em;
+  display: block;
+}
+.tool-title { font-weight: 500; font-size: 1rem; margin-bottom: 0.5rem; }
+.tool-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+.tool-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+.tool-tag {
+  font-family: 'Space Mono', monospace; font-size: 0.62rem;
+  padding: 0.2rem 0.55rem; background: var(--surface2);
+  border: 1px solid var(--border); border-radius: 4px; color: var(--muted);
+}
+.tool-link {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-family: 'Space Mono', monospace; font-size: 0.72rem;
+  color: var(--aqua); text-decoration: none; transition: color 0.2s;
+}
+.tool-link:hover { color: var(--purple); }
+.tool-badge {
+  display: inline-block; font-family: 'Space Mono', monospace;
+  font-size: 0.62rem; padding: 0.25rem 0.75rem; border-radius: 999px;
+  background: rgba(192,132,252,0.1); border: 1px solid rgba(192,132,252,0.3);
+  color: var(--purple);
+}
+
+/* DATASET CARD */
+.dataset-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px; padding: 1.75rem;
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 2rem; align-items: center;
+  transition: all 0.2s; margin-bottom: 1rem;
+}
+.dataset-card:hover { border-color: var(--aqua); transform: translateX(4px); }
+.dataset-num {
+  font-family: 'Space Mono', monospace;
+  font-size: 2rem; font-weight: 700; color: var(--purple);
+  line-height: 1;
+}
+.dataset-label { font-size: 0.72rem; color: var(--muted); margin-top: 0.2rem; }
+
+/* CERTIFICATE */
+.cert-row {
+  margin-top: 2rem; padding: 1.25rem 1.5rem;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: 12px; display: flex; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  transition: border-color 0.2s;
+}
+.cert-row:hover { border-color: var(--purple); }
+.cert-btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.6rem 1.25rem; border-radius: 999px;
+  background: rgba(192,132,252,0.15); border: 1px solid rgba(192,132,252,0.4);
+  color: var(--purple); font-size: 0.82rem; cursor: pointer;
+  font-family: 'DM Sans', sans-serif; transition: all 0.2s;
+}
+.cert-btn:hover { background: rgba(192,132,252,0.25); }
+
+/* MODAL */
+.modal {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+  align-items: center; justify-content: center;
+}
+.modal.open { display: flex; }
+.modal-inner { position: relative; max-width: 500px; width: 90%; margin: auto; }
+.modal-close {
+  position: absolute; top: -40px; right: 0;
+  background: none; border: none; color: white;
+  font-size: 1rem; cursor: pointer; font-family: 'Space Mono', monospace;
+  letter-spacing: 0.05em;
+}
+.modal-close:hover { color: var(--aqua); }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 3rem;
+  display: flex; justify-content: space-between; align-items: center;
+  color: var(--muted); font-size: 0.82rem;
+}
+.footer-hand { font-family: 'Caveat', cursive; font-size: 1.1rem; color: var(--purple); }
+
+@media(max-width:768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .page-hero { padding: 6rem 1.5rem 2rem; }
+  .tools-section { padding: 0 1.5rem 3rem; }
+  .dataset-card { grid-template-columns: 1fr; }
+  footer { flex-direction: column; gap: 0.5rem; padding: 1.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<!-- Certificate Modal -->
+<div id="cert-modal" class="modal">
+  <div class="modal-inner">
+    <button class="modal-close" onclick="document.getElementById('cert-modal').classList.remove('open')">✕ close</button>
+    <img src="CertCrew.png" alt="Crew Gal Certificate" style="width:100%; border-radius:12px; box-shadow:0 20px 60px rgba(0,0,0,0.5);">
+  </div>
+</div>
+
+<nav>
+  <a href="index.html" class="nav-logo">ng ◎</a>
+  <ul class="nav-links">
+    <li><a href="index.html">home</a></li>
+    <li><a href="portfolio.html">creative</a></li>
+    <li><a href="tools.html" class="active">technical</a></li>
+    <li><a href="cv.html">cv</a></li>
+    <li><a href="index.html#contact">contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="page-hero" style="position:relative;z-index:1;">
+  <a href="index.html" class="back-link">← back to home</a>
+  <div class="hero-tag">technical work</div>
+  <h1 class="page-title">
+    plugins &amp; <span>tools</span>
+  </h1>
+  <p class="page-sub">
+    Software I have designed and built — from <em>VST plugins and standalone apps</em> to open-source teaching tools and research datasets. Built at the intersection of signal processing, machine learning and sound design.
+  </p>
+</div>
+
+<!-- PLUGINS -->
+<div class="tools-section">
+  <div class="section-header">
+    <span class="section-hand">plugins & apps</span>
+    <span class="section-code">// built_with_juce/</span>
+  </div>
+  <p class="section-desc">
+    Audio plugins and standalone applications built in JUCE and C++, developed for research and commercial use.
+  </p>
+
+  <div class="tools-grid">
+
+    <!-- QUAP -->
+    <div class="tool-card purple">
+      <span class="tool-lang">PYTHON · C++ · MACHINE LEARNING</span>
+      <div class="tool-title">QUAP — Quality Audio Prototyping</div>
+      <div class="tool-desc">AI-powered tool for searching and generating sound effects. Combines ML-based classification with C++ signal processing to help sound designers find and create sounds faster — without losing creative agency or serendipity.</div>
+      <div class="tool-tags">
+        <span class="tool-tag">Audio Search</span>
+        <span class="tool-tag">ML Classification</span>
+        <span class="tool-tag">DSP</span>
+        <span class="tool-tag">Human-in-the-loop</span>
+      </div>
+      <span class="tool-badge">⏳ coming soon — paper under review</span>
+    </div>
+
+    <!-- NEMISINDO VSTS -->
+    <div class="tool-card aqua">
+      <span class="tool-lang">JUCE · C++ · DSP · COMMERCIAL</span>
+      <div class="tool-title">Nemisindo VST Plugins</div>
+      <div class="tool-desc">Developed 6–8 procedural audio VST plugins at Nemisindo, implementing synthesis models for action-packed sound effects. Applied machine learning methods to optimise perceptual quality parameters across all models.</div>
+      <div class="tool-tags">
+        <span class="tool-tag">🚀 Rocket</span>
+        <span class="tool-tag">✈️ Jet</span>
+        <span class="tool-tag">🔥 Fire</span>
+        <span class="tool-tag">💥 Explosion</span>
+        <span class="tool-tag">🚁 Helicopter</span>
+        <span class="tool-tag">🔫 Gun</span>
+      </div>
+      <a href="https://nemisindo.com" target="_blank" class="tool-link">↗ nemisindo.com</a>
+    </div>
+
+    <!-- STUTTER FX -->
+    <div class="tool-card pink">
+      <span class="tool-lang">JUCE · C++ · STANDALONE APP</span>
+      <div class="tool-title">Stutter FX — Standalone App</div>
+      <div class="tool-desc">Standalone audio application built from scratch integrating low/high-pass filters, delay and reverb. Designed and delivered as a fully functional DSP tool for real-world use.</div>
+      <div class="tool-tags">
+        <span class="tool-tag">Filters</span>
+        <span class="tool-tag">Delay</span>
+        <span class="tool-tag">Reverb</span>
+        <span class="tool-tag">Standalone</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TEACHING TOOLS -->
+  <div class="section-header" style="margin-top:3rem;">
+    <span class="section-hand">teaching tools</span>
+    <span class="section-code">// open_source/</span>
+  </div>
+  <p class="section-desc">
+    Open-source materials developed for the Audio Plugin Development module at Queen Mary University of London.
+  </p>
+
+  <div class="tools-grid">
+    <div class="tool-card purple" style="grid-column: 1 / -1; max-width: 600px;">
+      <span class="tool-lang">JUCE · C++ · OPEN SOURCE · QMUL</span>
+      <div class="tool-title">JuceSteps — Audio Programming Labs</div>
+      <div class="tool-desc">7 hands-on labs for learning audio programming in JUCE/C++. Each lab includes a starter template (code to complete) and a full solution — so you can practice at your own pace or use them as a reference. Originally developed as teaching material for the Audio Plugin Development module at QMUL.</div>
+      <div class="tool-tags" style="margin-bottom:1.25rem;">
+        <span class="tool-tag">01 — Introduction</span>
+        <span class="tool-tag">02 — Synth ADR</span>
+        <span class="tool-tag">03 — Filters</span>
+        <span class="tool-tag">04 — Delay</span>
+        <span class="tool-tag">05 — Pan Laws</span>
+        <span class="tool-tag">06 — FM & Compression</span>
+        <span class="tool-tag">07 — Reverb & Distortion</span>
+      </div>
+      <a href="https://github.com/nellyngz95/JuceSteps" target="_blank" class="tool-link">↗ view on GitHub</a>
+    </div>
+  </div>
+
+  <!-- DATASETS -->
+  <div class="section-header" style="margin-top:3rem;">
+    <span class="section-hand">datasets</span>
+    <span class="section-code">// research_output/</span>
+  </div>
+  <p class="section-desc">
+    Publicly available datasets produced as part of my PhD research at the Centre for Digital Music, QMUL.
+  </p>
+
+  <div class="dataset-card">
+    <div>
+      <div style="font-family:'Space Mono',monospace; font-size:0.68rem; color:var(--aqua); margin-bottom:0.5rem; letter-spacing:0.1em;">ZENODO · ARXIV:2501.17198 · 2025</div>
+      <div style="font-weight:500; font-size:0.95rem; margin-bottom:0.3rem;">6KSFX — Synthetic Sound Effects Dataset</div>
+      <div style="font-size:0.82rem; color:var(--muted); margin-bottom:1rem;">6,000 synthetic audio samples across 30 sound categories, designed to advance research in procedural audio synthesis and evaluation. Includes 50 noise-augmented samples for ML applications.</div>
+      <div style="display:flex; gap:2rem; flex-wrap:wrap; margin-bottom:1rem;">
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:1.4rem; font-weight:700; color:var(--purple); line-height:1;">6,000</div>
+          <div style="font-size:0.72rem; color:var(--muted);">audio samples</div>
+        </div>
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:1.4rem; font-weight:700; color:var(--aqua); line-height:1;">30</div>
+          <div style="font-size:0.72rem; color:var(--muted);">categories</div>
+        </div>
+        <div>
+          <div style="font-family:'Space Mono',monospace; font-size:1.4rem; font-weight:700; color:var(--pink); line-height:1;">2.56GB</div>
+          <div style="font-size:0.72rem; color:var(--muted);">total size</div>
+        </div>
+      </div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="https://zenodo.org/records/14517916" target="_blank" class="tool-link">↗ download on Zenodo</a>
+        <a href="https://arxiv.org/abs/2501.17198" target="_blank" class="tool-link">↗ read the paper</a>
+      </div>
+    </div>
+  </div>
+
+
+<footer>
+  <span class="footer-hand">made by: NVAGS</span>
+  <span>London · 2026</span>
+</footer>
+
+</body>
+</html>
